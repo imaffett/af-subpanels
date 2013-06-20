@@ -1,0 +1,57 @@
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="https://raw.github.com/01org/appframework/2.0/css/af.ui.css" title="default"/>
+    <link rel="stylesheet" type="text/css" href="https://raw.github.com/01org/appframework/2.0/css/icons.css" title="default"/>
+    <link rel="stylesheet" type="text/css" href="subpanels.css" title="default"/>
+
+
+<script type="text/javascript" charset="utf-8" src="https://raw.github.com/01org/appframework/2.0/ui/appframework.ui.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="subpanels.js"></script>
+  </head>
+
+  <body>
+  <div id="afui">
+
+    <div id="header">
+        <a id='menubadge' onclick='af.ui.toggleSideMenu()' style='float:right;margin-top:0px' class='menuButton'></a>
+    </div>
+
+    <div id='content'>
+      <div id="mynewdiv" title="My New Div" class="panel" scrolling="no">  <!-- jqUi panel -->
+          <script type="text/javascript">
+              $(document).ready(function(){
+                 $("#subPanel").subpanel();
+              });
+          </script>
+
+          <!-- now we start the sub panels -->
+          <div id='subPanel' style="position:absolute;top:0px;bottom:40px;width:100%;-webkit-overflow-scrolling:touch;"> 
+              <div class="insetPanel default" id='page1' style='background:green !important;'>Page 1<br><br>asdfasdfasdfasdf
+                  <br><br>asdfasdfasdfasdf<<br><br>asdfasdfasdfasdf<<br><br>asdfasdfasdfasdf<<br><br>asdfasdfasdfasdf<<br><br>asdfasdfasdfasdf<
+                  <br><br>foooo<br><br>foooo<br><br>foooo<br><br>foooo<br><br>foooo<br><br>foooo
+              </div>
+              <div class="insetPanel" id='page2' style='background:red !important'>Page 2</div>
+              <div class="insetPanel" id='page3' style='background:blue !important' scrolling="no">Page 3</div>
+          </div>
+
+          <!-- this is nav.  If must have class "subpanelNav" -->
+          <div class="subpanelNav" style="position:absolute;bottom:0px;height:40px;width:100%;line-height:24px;font-size:14px;text-align:center;background:black;color:white;">
+              <a class='icon headset' href="#page1" ></a> | 
+              <a class='icon wifi' href="#page2"> </a> | 
+              <a class='icon html5' href="#page3"></a> 
+          </div>
+      </div>
+      <div id="main" class="panel">
+                  <br><br>asdfasdfasdfasdf<<br><br>asdfasdfasdfasdf<<br><br>asdfasdfasdfasdf<<br><br>asdfasdfasdfasdf<<br><br>asdfasdfasdfasdf<
+                  <br><br>foooo<br><br>foooo<br><br>foooo<br><br>foooo<br><br>foooo<br><br>foooo
+      </div>
+    </div>
+    <div id='navbar'>
+      <a href="#mynewdiv" class="icon home"></a> <a href="#main" class="icon home"></a>
+    </div>
+    </div>
+</div>
+</body>
+</html>

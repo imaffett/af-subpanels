@@ -1,0 +1,28 @@
+.insetPanel{
+        -webkit-backface-visibility: hidden;
+        z-index:1;
+        width:100%;
+        display:none;
+        position:absolute; top:0px; left:0px;
+	height:100%;
+        overflow:auto;
+        background:inherit;
+        -webkit-perspective: 1000;
+        -webkit-transition-duration:300ms;
+	-webkit-overflow-scrolling:touch;
+}
+
+.insetPanel > * {
+        -webkit-backface-visibility: hidden;
+        -webkit-perspective: 1000;
+}
+    
+.subpanelNav a {
+        display:inline-block;
+        text-decoration:none;
+        color:white;
+}
+
+.jqmScrollbar{
+        z-index:200;
+}
