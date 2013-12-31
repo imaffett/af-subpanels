@@ -6,7 +6,7 @@
     "license": "MIT X11",
     "description": "This plugin sub panels for App Framework UI",
     "categories": [
-        "menu"
+        "sub panel"
     ],
     "homepage": "https://github.com/imaffett/af-subpanels",
     "maintainers": ["Ian Maffett"]
