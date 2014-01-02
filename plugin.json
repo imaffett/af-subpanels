@@ -1,8 +1,8 @@
 {
     "name": "af-subpanels",
     "title": "Sub Panels",
-    "version": "0.1"
-    "author": "Ian Maffett"
+    "version": "0.1",
+    "author": "Ian Maffett",
     "license": "MIT X11",
     "description": "This plugin sub panels for App Framework UI",
     "categories": [
