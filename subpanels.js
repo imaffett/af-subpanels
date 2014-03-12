@@ -29,89 +29,88 @@
             <a class='icon html5' href="#page3"></a> 
         </div>
     </div>
- */
-
-(function($) {
-  if (!$.ui) {
-    return alert("This library requires jqUi");
-  }
-  var scrollers = [];
-  $.fn.subpanel = function() {
-    if (this.length == 0) return;
-
-    for (var i = 0; i < this.length; i++) {
-      new subpanel(this[i]);
+    */
+(function ($) {
+    if (!$.ui) {
+        return alert("This library requires App Framework UI");
     }
-    return this;
-  }
+    var scrollers = [];
+    $.fn.subpanel = function () {
+        if (this.length === 0) return;
 
-  var subpanel = function(item) {
-      this.container = $(item);
-
-      //let's delegate the clicks to handle routing
-      var self = this;
-      this.container.parent().find(".subpanelNav").on("click", "a", function(e) {
-        self.loadNewDiv($(this.hash).get(), $(this).data("transition"), false);
-        e.preventDefault();
-      });
-      this.container.css("overflow", "hidden");
-      this.container.parent().find(".subpanelNav a").data("ignore", "true"); //Set data ignore so the main click handler doesn't process it
-      this.container.find("div.insetPanel").forEach(function(obj) {
-        if ($(obj).attr("scrolling") == "no") return;
-        scrollers[obj.id] = $(obj).scroller({
-          scrollBars: true,
-          verticalScroll: true,
-          vScrollCSS: "jqmScrollbar",
-          useJsScroll: !$.feat.nativeTouchScroll,
-          noParent:$.feat.nativeTouchScroll
-        });
-        scrollers[obj.id].disable();
-      });
-      this.loadCurrent();
-      this.container.bind("destroy", function() {
-        this.container.find("div").forEach(function(obj) {
-          if ($(obj).attr("scrolling") == "no") return;
-          scrollers[obj.id].disable();
-          delete scrollers[obj.id];
-        });
-      })
-      var that = this;
-      this.container.parent().find(".backButton").bind("click", function() {
-        if (that.history.length > 0) {
-          var el = that.history.pop();
-          that.loadNewDiv(el.old, el.trans, true, el.new);
+        for (var i = 0; i < this.length; i++) {
+            new Subpanel(this[i]);
         }
-      })
+        return this;
     };
 
-  subpanel.prototype = {
-    container: null,
-    currentDiv: null,
-    history: [],
-    loadCurrent: function() {
-      var div = this.container.find(".default");
-      div.vendorCss("Transform", "none");
-      div.show();
-      this.currentDiv = div.get();
-      if (scrollers[this.currentDiv.id]) scrollers[this.currentDiv.id].enable();
-    },
-    loadNewDiv: function(newDiv, trans, back, prevDiv) {
-      if (newDiv == this.currentDiv) return;
-      back = back || false;
-      var oldDiv = prevDiv || this.currentDiv;
-      $.ui.doingTransition = true;
-      $.ui.runTransition(trans, oldDiv, newDiv, back);
-      if (scrollers[this.currentDiv.id]) scrollers[this.currentDiv.id].disable();
-      this.currentDiv = newDiv;
-      if (scrollers[this.currentDiv.id]) scrollers[this.currentDiv.id].enable();
-      if (back) return;
-      this.history.push({
-        'old': oldDiv,
-        'new': newDiv,
-        'trans': trans
-      });
-    }
+    var Subpanel = function (item) {
+        this.container = $(item);
 
-  };
+        //let's delegate the clicks to handle routing
+        var self = this;
+        this.container.parent().find(".subpanelNav").on("click", "a", function (e) {
+            self.loadNewDiv($(this.hash).get(), $(this).data("transition"), false);
+            e.preventDefault();
+        });
+        this.container.css("overflow", "hidden");
+        this.container.parent().find(".subpanelNav a").data("ignore", "true"); //Set data ignore so the main click handler doesn't process it
+        this.container.find("div.insetPanel").forEach(function (obj) {
+            if ($(obj).attr("scrolling") == "no") return;
+            scrollers[obj.id] = $(obj).scroller({
+                scrollBars: true,
+                verticalScroll: true,
+                vScrollCSS: "jqmScrollbar",
+                useJsScroll: !$.feat.nativeTouchScroll,
+                noParent: $.feat.nativeTouchScroll
+            });
+            scrollers[obj.id].disable();
+        });
+        this.loadCurrent();
+        this.container.bind("destroy", function () {
+            this.container.find("div").forEach(function (obj) {
+                if ($(obj).attr("scrolling") == "no") return;
+                scrollers[obj.id].disable();
+                delete scrollers[obj.id];
+            });
+        });
+        var that = this;
+        this.container.parent().find(".backButton").bind("click", function () {
+            if (that.history.length > 0) {
+                var el = that.history.pop();
+                that.loadNewDiv(el.old, el.trans, true, el.new);
+            }
+        });
+    };
 
-})(jq)
+    subpanel.prototype = {
+        container: null,
+        currentDiv: null,
+        history: [],
+        loadCurrent: function () {
+            var div = this.container.find(".default");
+            div.vendorCss("Transform", "none");
+            div.show();
+            this.currentDiv = div.get();
+            if (scrollers[this.currentDiv.id]) scrollers[this.currentDiv.id].enable();
+        },
+        loadNewDiv: function (newDiv, trans, back, prevDiv) {
+            if (newDiv == this.currentDiv) return;
+            back = back || false;
+            var oldDiv = prevDiv || this.currentDiv;
+            $.ui.doingTransition = true;
+            $.ui.runTransition(trans, oldDiv, newDiv, back);
+            if (scrollers[this.currentDiv.id]) scrollers[this.currentDiv.id].disable();
+            this.currentDiv = newDiv;
+            if (scrollers[this.currentDiv.id]) scrollers[this.currentDiv.id].enable();
+            if (back) return;
+            this.history.push({
+                'old': oldDiv,
+                'new': newDiv,
+                'trans': trans
+            });
+        }
+
+    };
+
+})(af);
