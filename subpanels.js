@@ -83,7 +83,7 @@
         });
     };
 
-    subpanel.prototype = {
+    Subpanel.prototype = {
         container: null,
         currentDiv: null,
         history: [],
